@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PitStop Planner | Formula 1 Strategy Simulator</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <header id="top">
+        <h1>PitStop Planner</h1>
+        <p>Прогноз оптимальных пит-стопов в Формуле 1</p>
+    </header>
+
+    <section id="about">
+        <h2>О проекте</h2>
+        <p>
+            PitStop Planner - это инструмент для прогнозирования оптимальных пит-стопов в гонках Формулы 1 на основе условий гонки, состояния трассы и выбранной стратегии.
+        </p>
+    </section>
+
+    <section id="inputs">
+        <h2>Параметры гонки</h2>
+        <form>
+            <label for="track"> 
+            Трасса:
+            <select id="track" name="track">
+                <option value="melbourne">Мельбурн, Австралия</option>
+                <option value="shanghai">Шанхай, Китай</option>
+                <option value="suzuka">Сузука, Япония</option>
+                <option value="sakhir">Сахир, Бахрейн</option>
+                <option value="jeddah">Джидда, Саудовская Аравия</option>
+                <option value="miami">Майами, Флорида</option>
+                <option value="imola">Имола, Италия</option>
+                <option value="monte">Монте-Карло, Монако</option>
+                <option value="barcelona">Барселона, Испания</option>
+                <option value="montreal">Монреаль, Канада</option>
+                <option value="spielberg">Шпильберг, Австрия</option>
+                <option value="silverstone">Сильверстоун, Великобритания</option>
+                <option value="spa">Спа-Франкоршам, Бельгия</option>
+                <option value="budapest">Будапешт, Венгрия</option>
+                <option value="zandvoort">Зандворт, Нидерланды</option>
+                <option value="monza">Монца, Италия</option>
+                <option value="baku">Баку, Азербайджан</option>
+                <option value="marina">Марина Бей, Сингапур</option>
+                <option value="austin">Остин, Техас</option>
+                <option value="mexico">Мехико, Мексика</option>
+                <option value="paulo">Сан-Паулу, Бразилия</option>
+                <option value="vegas">Лас-Вегас, Невада</option>
+                <option value="lusail">Лусаил, Катар</option>
+                <option value="abudhabi">Абу-Даби, ОАЭ</option>
+            </select>
+        </label>
+        <label for="race">
+            Тип гонки:
+            <select id="race" name="race">
+                <option value="race">Гонка</option>
+                <option value="sprint">Спринт</option>
+            </select>
+        </label>
+        <label for="tire"> 
+            Тип шин:
+            <select id="tire" name="tire">
+                <option value="soft">Soft</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+                <option value="wet">Wet</option>
+                <option value="intermediate">Intermediate</option>
+            </select>
+        </label>
+        <label for="weather"> 
+            Погода:
+            <select id="weather" name="weather">
+                <option value="norain">Нет дождя</option>
+                <option value="rain">Дождь</option>
+            </select>
+        </label>
+        <label for="temperature">
+            Температура трассы:
+            <select id="temperature" name="temperature"> 
+                <option value="high">Высокая температура</option>
+                <option value="low">Низкая температура</option>
+            </select>
+        </label>
+        <button type="submit">
+            Рассчитать стратегию
+        </button>
+        </form>
+    </section>
+
+    <section id="result">
+         <h2>Рекомендуемая стратегия</h2>
+         <p>Здесь будет отображаться рекомендуемая стратегия пит-стопов.</p>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>

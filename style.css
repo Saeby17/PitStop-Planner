@@ -1,0 +1,125 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background-color: #0e0e0e;
+    color: #eaeaea;
+    line-height: 1.6;
+    padding: 40px 20px;
+}
+
+body {
+    font-family: 'Open Sans', Arial, sans-serif;
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)
+        ),
+        url("https://cdn.biziday.ro/wp-content/uploads/2024/11/Formula-1-Volodymyr-Melnyk-Dreamstime.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    color: #eaeaea;
+    line-height: 1.6;
+    padding: 40px 20px;
+}
+
+header {
+    max-width: 1300px;
+    margin: 0 auto 30px;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+    background-color: rgba(26, 22, 22, 0.4)
+}
+
+header h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5rem;
+    color: #d69796; 
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+header p {
+    color: #fcfcfc;
+}
+
+section {
+    max-width: 1300px;
+    margin: 0 auto 30px;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(46, 43, 43, 0.6);
+    background-color: rgba(114, 92, 92, 0.55)
+}
+
+section h2 {
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 15px;
+    color: #ffffff;
+}
+
+form {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+}
+
+label {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.95rem;
+    color: #d0d0d0;
+}
+
+select {
+    margin-top: 6px;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    background-color: #282323;
+    color: #ffffff;
+    font-size: 0.95rem;
+}
+
+select:focus {
+    outline: 2px solid #8e7574;
+}
+
+button {
+    margin-top: 10px;
+    padding: 12px;
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: #634e4e;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.1s ease;
+}
+
+button:hover {
+    background-color: #5c4646;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+#result {
+    border-left: 4px solid #5a4949;
+}
+
+#result p {
+    margin-top: 10px;
+    color: #cfcfcf;
+}
