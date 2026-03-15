@@ -19,13 +19,13 @@
     <section id="about">
         <h2>О проекте</h2>
         <p>
-            PitStop Planner - это инструмент для прогнозирования оптимальных пит-стопов в гонках Формулы 1 на основе условий гонки, состояния трассы и выбранной стратегии.
+            PitStop Planner - это инструмент для прогнозирования оптимальных пит-стопов в гонках Формулы 1 на основе выбранной трассы, состояния трассы и условий гонки.
         </p>
     </section>
 
     <section id="inputs">
         <h2>Параметры гонки</h2>
-        <form>
+        <form id="strategyForm">
             <label for="track"> 
             Трасса:
             <select id="track" name="track">
@@ -80,11 +80,16 @@
             </select>
         </label>
         <label for="temperature">
-            Температура трассы:
-            <select id="temperature" name="temperature"> 
-                <option value="high">Высокая температура</option>
-                <option value="low">Низкая температура</option>
-            </select>
+            Температура трассы (°C):
+            <input 
+                type="number" 
+                id="temperature" 
+                    name="temperature"
+                min="0"
+                max="60"
+            
+                required
+            >
         </label>
         <button type="submit">
             Рассчитать стратегию
@@ -94,7 +99,9 @@
 
     <section id="result">
          <h2>Рекомендуемая стратегия</h2>
-         <p>Здесь будет отображаться рекомендуемая стратегия пит-стопов.</p>
+                <p id="strategyText">
+                    Здесь будет отображаться рекомендуемая стратегия пит-стопов.
+                </p>
     </section>
 
     <script src="script.js"></script>
