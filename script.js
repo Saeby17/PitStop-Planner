@@ -6,7 +6,8 @@ form.addEventListener("submit", function(event) {
     const track = document.getElementById("track").value;
     const tire = document.getElementById("tire").value;
     const temperature = document.getElementById("temperature").value;
-
+    const weather = document.getElementById("weather").value;
+    const race = document.getElementById("race").value;
     const trackData = tracks[track];
 
     let tempK;
@@ -14,23 +15,84 @@ form.addEventListener("submit", function(event) {
     else if (temperature <= 30) tempK = 1.0;
     else tempK = 1.2;
 
-    const baseLife = tireLife[tire];
-    const realLife = Math.floor(baseLife / (trackData.wearK * tempK));
+    // стратегия шин
+    let nextTire;
 
-    const pitStops = Math.ceil(trackData.laps / realLife) - 1;
-
-    const stintLength = Math.floor(trackData.laps / (pitStops + 1));
-
-    const pitLaps = [];
-    for (let i = 1; i <= pitStops; i++) {
-        pitLaps.push(stintLength * i);
+    if (weather === "rain") {
+       nextTire = {
+           wet: "intermediate",
+            intermediate: "hard",
+            hard: "medium"
+        };
+    } else {
+        nextTire = {
+            soft: "medium",
+            medium: "hard",
+            hard: "medium"
+        };
     }
 
+    if (race === "sprint") {
+        const totalTime = Math.floor(trackData.laps/3) * trackData.lapTime;
+
     document.getElementById("result").innerHTML = `
-        <h2>Рекомендуемая стратегия</h2>
-        <p>Количество пит-стопов: ${pitStops}</p>
-        <p>Круги пит-стопов: ${pitLaps.join(", ")}</p>
-    `;
+        <h2>Спринт</h2>
+        <p>Пит-стопы не требуются</p>
+        <p>Примерное время: ${totalTime} секунд</p>
+        `;
+    
+        return;
+    }
+
+    // проверка на дождь
+    if (weather === "rain" && !["wet", "intermediate"].includes(tire)) {
+        document.getElementById("result").innerHTML =
+            "<p>Ошибка: выбери дождевые шины</p>";
+        return;
+    }
+
+    // основной алгоритм
+    let lapsLeft = trackData.laps;
+    let currentTire = tire;
+
+    let pitLaps = [];
+    let tiresUsed = [currentTire];
+
+    let currentLap = 0;
+
+    while (lapsLeft > 0) {
+        const baseLife = tireLife[currentTire];
+        const realLife = Math.floor(baseLife / (trackData.wearK * tempK));
+
+        // если мало кругов — доезжаем
+        if (lapsLeft <= 5) break;
+
+        // 🔥 ВАЖНО: если стинт больше оставшихся кругов — не питаемся
+        if (realLife >= lapsLeft) break;
+
+        currentLap += realLife;
+        lapsLeft -= realLife;
+
+        pitLaps.push(currentLap);
+
+        currentTire = nextTire[currentTire];
+        if (!currentTire) break;
+
+        tiresUsed.push(currentTire);
+}
+
+    let strategyText = `<h2>Рекомендуемая стратегия</h2>`;
+
+    strategyText += `<p>Старт: ${tiresUsed[0]}</p>`;
+
+    for (let i = 0; i < pitLaps.length; i++) {
+        strategyText += `<p>Пит-стоп ${i + 1} — круг ${pitLaps[i]} → ${tiresUsed[i + 1]}</p>`;
+    }
+
+    strategyText += `<p>Количество пит-стопов: ${pitLaps.length}</p>`;
+
+    document.getElementById("result").innerHTML = strategyText;
+
 });
 
 const tracks = {
@@ -62,8 +124,8 @@ const tracks = {
 
 const tireLife = {
     soft: 15,
-    medium: 25,
-    hard: 35,
+    medium: 22,
+    hard: 32,
     intermediate: 30,
     wet: 28
 };
