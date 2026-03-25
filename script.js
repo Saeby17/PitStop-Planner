@@ -14,7 +14,7 @@ form.addEventListener("submit", function(event) {
     let tempK;
     if (temperature < 20) tempK = 0.9;
     else if (temperature <= 30) tempK = 1.0;
-    else tempK = 1.2;
+    else tempK = 1.15;
 
     // стратегия смен шин
     let nextTire;
@@ -64,7 +64,7 @@ form.addEventListener("submit", function(event) {
         const realLife = Math.floor(baseLife / (trackData.wearK * tempK));
 
         // если оставшихся кругов меньше ресурса шины или мало кругов — доезжаем
-        if (realLife >= lapsLeft || lapsLeft <= 5) {
+        if (realLife >= lapsLeft || lapsLeft <= 6) {
             currentLap += lapsLeft;
             lapsLeft = 0;
             break;
@@ -121,8 +121,8 @@ const tracks = {
 
 const tireLife = {
     soft: 15,
-    medium: 25,
-    hard: 35,
+    medium: 30,
+    hard: 40,
     intermediate: 30,
     wet: 28
 };
